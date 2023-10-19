@@ -21,7 +21,7 @@ jobs:
         run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
 
       - name: Comment Test Coverage
-        uses: lucianogorza/comment-test-coverage@1.0
+        uses: lucianogorza/comment-test-coverage@1.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: coverage/coverage-summary.json
