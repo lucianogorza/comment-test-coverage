@@ -1,5 +1,5 @@
-name: 'Comment Test Coverage'
-description: 'Read a Test Coverage json-summary test report and add stats on to PR using a table that rewrites itself on successive pushes'
+name: 'Comment Test Coverage with delete filter by title'
+description: 'Read a Test Coverage json-summary test report and add stats on to PR using a table that rewrites itself on successive pushes if has the same title.'
 inputs:
   token:
     description: 'The GitHub authentication token'
