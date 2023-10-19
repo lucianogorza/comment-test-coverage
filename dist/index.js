@@ -296,8 +296,11 @@ async function deletePreviousComments({ owner, repo, octokit, issueNumber, title
 
     if (comment.user.type !== 'Bot') return false;
     if (title) {
+      console.log({title})
       const regexTitle = new RegExp(title);
-      if (!regexTitle.test(comment.body)) return false;
+      const hastodelete = regexTitle.test(comment.body)
+      console.log({hastodelete})
+      if (!hastodelete) return false;
     }
     if (!regexMarker.test(comment.body)) return false;
 

@@ -71,9 +71,9 @@ async function deletePreviousComments({ owner, repo, octokit, issueNumber, title
     if (title) {
       console.log({title})
       const regexTitle = new RegExp(title);
-      const delete = regexTitle.test(comment.body)
-      console.log({delete})
-      if (!delete) return false;
+      const hastodelete = regexTitle.test(comment.body)
+      console.log({hastodelete})
+      if (!hastodelete) return false;
     }
     if (!regexMarker.test(comment.body)) return false;
 
