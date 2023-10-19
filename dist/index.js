@@ -274,6 +274,7 @@ async function run() {
       octokit,
       owner,
       repo,
+      title: inputs.title
     });
 
     await octokit.issues.createComment({
@@ -288,12 +289,16 @@ async function run() {
   }
 }
 
-async function deletePreviousComments({ owner, repo, octokit, issueNumber }) {
+async function deletePreviousComments({ owner, repo, octokit, issueNumber, title }) {
   const onlyPreviousCoverageComments = (comment) => {
     const regexMarker = /^<!--json:{.*?}-->/;
     const extractMetaFromMarker = (body) => JSON.parse(body.replace(/^<!--json:|-->(.|\n|\r)*$/g, ''));
 
     if (comment.user.type !== 'Bot') return false;
+    if (title) {
+      const regexTitle = new RegExp(title);
+      if (!regexTitle.test(comment.body)) return false;
+    }
     if (!regexMarker.test(comment.body)) return false;
 
     const meta = extractMetaFromMarker(comment.body);
