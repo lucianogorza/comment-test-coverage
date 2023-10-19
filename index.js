@@ -33,7 +33,7 @@ async function run() {
     const data = fs.readFileSync(`${process.env.GITHUB_WORKSPACE}/${inputs.path}`, 'utf8');
     const json = JSON.parse(data);
 
-    const coverage = `<!--json:${JSON.stringify(originMeta)}-->
+    const coverage = `<!--json:${JSON.stringify({...originMeta, title: inputs.title})}-->
 |${inputs.title}| %                           | values                                                              |
 |---------------|:---------------------------:|:-------------------------------------------------------------------:|
 |Statements     |${json.total.statements.pct}%|( ${json.total.statements.covered} / ${json.total.statements.total} )|
@@ -68,18 +68,11 @@ async function deletePreviousComments({ owner, repo, octokit, issueNumber, title
     const extractMetaFromMarker = (body) => JSON.parse(body.replace(/^<!--json:|-->(.|\n|\r)*$/g, ''));
 
     if (comment.user.type !== 'Bot') return false;
-    if (title) {
-      console.log({title})
-      const regexTitle = new RegExp(title);
-      const hastodelete = regexTitle.test(comment.body)
-      console.log({hastodelete})
-      if (!hastodelete) return false;
-    }
     if (!regexMarker.test(comment.body)) return false;
 
     const meta = extractMetaFromMarker(comment.body);
 
-    return meta.commentFrom === originMeta.commentFrom;
+    return meta.commentFrom === originMeta.commentFrom && meta.title === title;
   }
 
   const asyncDeleteComment = (comment) => {
