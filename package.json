@@ -1,6 +1,6 @@
 {
   "name": "output-test-coverage",
-  "version": "1.2.1",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AthleticNet/comment-test-coverage.git"
+    "url": "git+https://github.com/lucianogorza/comment-test-coverage.git"
   },
   "keywords": [],
-  "author": "Jacob Bowdoin",
+  "author": "Luciano Gorza",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AthleticNet/comment-test-coverage/issues"
+    "url": "https://github.com/lucianogorza/comment-test-coverage/issues"
   },
-  "homepage": "https://github.com/AthleticNet/comment-test-coverage#readme",
+  "homepage": "https://github.com/lucianogorza/comment-test-coverage#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0"
